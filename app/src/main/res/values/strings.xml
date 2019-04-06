@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CreativeLab</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
-    <string name="title_community">Community</string>
+    <string name="title_activity_dashboard">Creative Lab</string>
+    <string name="title_hub">Hub</string>
     <string name="title_learn">Learn</string>
     <string name="title_profile">Profile</string>
 </resources>
