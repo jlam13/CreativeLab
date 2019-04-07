@@ -5,48 +5,28 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 public class DashboardActivity extends MainActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-    private TextView mTextMessage;
-
-/*    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_community:
-                    mTextMessage.setText(R.string.title_community);
-                    return true;
-                case R.id.navigation_learn:
-                    mTextMessage.setText(R.string.title_learn);
-                    return true;
-                case R.id.navigation_profile:
-                    mTextMessage.setText(R.string.title_profile);
-                    return true;
-            }
-            return false;
-        }
-    };
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-//        mTextMessage = (TextView) findViewById(R.id.message);
+        // Sets the Learn tab as the default tab
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         navigation.setSelectedItemId(R.id.navigation_learn);
 
+        // Loads the selected fragment
         loadFragment(new LearnFragment());
-
     }
 
+    // Method to load the selected fragment
     private boolean loadFragment(Fragment fragment) {
         if(fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -55,6 +35,7 @@ public class DashboardActivity extends MainActivity implements BottomNavigationV
         return false;
     }
 
+    // Assigns the fragment with its corresponding navigation tab
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
