@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         createaccountbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                opensignup();
+                opensignUp();
             }
         }
         );
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void opensignup() {
-        Intent intent =new Intent(this, SignUpActivity.class);
+    public void opensignUp() {
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
 
     }
