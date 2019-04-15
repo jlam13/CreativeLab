@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import com.example.creativelab.Hub.HubFragment;
+import com.example.creativelab.Learn.LearnFragment;
+import com.example.creativelab.Profile.ProfileFragment;
 
 public class DashboardActivity extends MainActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
