@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 
 public class SignUp extends AppCompatActivity {
+    LoginDatabaseHelper db;
     private static final String TAG = "SignUpActivity";
 
     private EditText input_name;
     private EditText input_email;
     private EditText input_password;
+    private EditText input_confirmpassword;
     private Button btn_signUp;
     private TextView link_login;
 
@@ -27,19 +29,23 @@ public class SignUp extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        db = new LoginDatabaseHelper(this);
 
         input_name = (EditText) findViewById(R.id.input_name);
         input_email = (EditText) findViewById(R.id.input_email);
         input_password = (EditText) findViewById(R.id.input_password);
+        input_confirmpassword = (EditText) findViewById(R.id.input_confirmpassword);
         btn_signUp = (Button) findViewById(R.id.btn_signUp);
         link_login = (TextView) findViewById(R.id.link_login);
 
        btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 signUp();
             }
         });
+
 
         link_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +75,7 @@ public class SignUp extends AppCompatActivity {
         String name = input_name.getText().toString();
         String email = input_email.getText().toString();
         String password = input_password.getText().toString();
+        String confirmpassword = input_confirmpassword.getText().toString();
 
         // TODO: Implement your own signup logic here.
 
@@ -103,6 +110,7 @@ public class SignUp extends AppCompatActivity {
         String name = input_name.getText().toString();
         String email = input_email.getText().toString();
         String password = input_password.getText().toString();
+        String confirmpassword = input_confirmpassword.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             input_name.setError("at least 3 characters");
@@ -124,6 +132,14 @@ public class SignUp extends AppCompatActivity {
         } else {
             input_password.setError(null);
         }
+
+        if (password.equals(confirmpassword)) {
+            input_confirmpassword.setError(null);
+            valid = false;
+        } else {
+            input_confirmpassword.setError("passwords do not match");
+        }
+
 
         return valid;
     }

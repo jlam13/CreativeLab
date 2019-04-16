@@ -5,21 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView Password;
-    private TextView Username;
+    private TextView password;
+    private TextView username;
+    private Button login;
+    private Button register;
+    LoginDatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button viewbutton;
-        viewbutton = (Button) findViewById(R.id.loginbutton);
-        viewbutton.setOnClickListener(new View.OnClickListener() {
+        db = new LoginDatabaseHelper(this);
+        password = (TextView) findViewById(R.id.Passwordtext);
+        username = (TextView) findViewById(R.id.usernametext);
+        login = (Button) findViewById(R.id.loginbutton);
+        register = (Button) findViewById(R.id.createaccountbutton);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = username.getText().toString();
+                String pass = password.getText().toString();
+                Boolean login = db.login(email, pass);
+                if(login==true)
+                    Toast.makeText(getApplicationContext(), "Successfully Login", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
                 opendashboard();
             }
         }
@@ -30,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         createaccountbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                opensignUp();
+                opensignup();
             }
         }
         );
@@ -40,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void opensignUp() {
-        Intent intent = new Intent(this, SignUp.class);
+    public void opensignup() {
+        Intent intent =new Intent(this, SignUp.class);
         startActivity(intent);
 
     }
