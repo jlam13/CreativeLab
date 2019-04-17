@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Learn.Lesson.LessonActivity">
 
+    <TextView
+        android:id="@+id/lessonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="111dp" />
 </android.support.constraint.ConstraintLayout>
