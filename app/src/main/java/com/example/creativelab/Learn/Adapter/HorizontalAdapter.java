@@ -1,4 +1,4 @@
-package com.example.creativelab.Learn;
+package com.example.creativelab.Learn.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.creativelab.Learn.Interface.OnClickListener;
+import com.example.creativelab.Learn.Data.LearnCardData;
 import com.example.creativelab.Learn.Lesson.LessonActivity;
 import com.example.creativelab.Learn.Lesson.TestActivity;
 import com.example.creativelab.R;

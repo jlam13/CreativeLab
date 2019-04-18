@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.creativelab.Learn.Adapter.VerticalAdapter;
+import com.example.creativelab.Learn.Data.LearnCardData;
+import com.example.creativelab.Learn.Data.LearnCards;
+import com.example.creativelab.Learn.Interface.FirebaseLoadListener;
 import com.example.creativelab.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +29,7 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 
-public class LearnFragment extends Fragment implements FirebaseLoadListener{
+public class LearnFragment extends Fragment implements FirebaseLoadListener {
 
     public static String ARG_ITEM_ID;
     AlertDialog dialog;

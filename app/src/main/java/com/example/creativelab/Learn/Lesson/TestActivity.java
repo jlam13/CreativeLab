@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.creativelab.Learn.LearnCardData;
+import com.example.creativelab.Learn.Data.LearnCardData;
 import com.example.creativelab.R;
 
 public class TestActivity extends AppCompatActivity {

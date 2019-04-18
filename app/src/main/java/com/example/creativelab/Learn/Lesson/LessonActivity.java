@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.creativelab.Learn.LearnCardData;
+import com.example.creativelab.Learn.Data.LearnCardData;
 import com.example.creativelab.R;
 
 public class LessonActivity extends AppCompatActivity {
@@ -20,7 +20,6 @@ public class LessonActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String card = (String) extras.get("card");
-
             lessonId = findViewById(R.id.lessonId);
             lessonId.setText(card);
         }

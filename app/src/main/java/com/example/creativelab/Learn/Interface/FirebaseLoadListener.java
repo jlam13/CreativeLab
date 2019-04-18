@@ -1,4 +1,6 @@
-package com.example.creativelab.Learn;
+package com.example.creativelab.Learn.Interface;
+
+import com.example.creativelab.Learn.Data.LearnCards;
 
 import java.util.List;
 

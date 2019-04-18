@@ -1,4 +1,4 @@
-package com.example.creativelab.Learn;
+package com.example.creativelab.Learn.Data;
 
 public class LearnCardData {
     private String learnCardId, learnCardName;
