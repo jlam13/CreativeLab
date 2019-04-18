@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.creativelab.Learn.Learn;
+import com.example.creativelab.Learn.LearnCardData;
 import com.example.creativelab.R;
 
 public class LessonActivity extends AppCompatActivity {
 
-    private Learn learn;
+    private LearnCardData learnCardData;
     private TextView lessonId;
 
     @Override
@@ -17,6 +17,13 @@ public class LessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String card = (String) extras.get("card");
+
+            lessonId = findViewById(R.id.lessonId);
+            lessonId.setText(card);
+        }
 
     }
 }

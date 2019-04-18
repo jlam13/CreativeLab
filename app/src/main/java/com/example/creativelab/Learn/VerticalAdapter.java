@@ -1,8 +1,7 @@
 package com.example.creativelab.Learn;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,49 +11,51 @@ import android.widget.TextView;
 
 import com.example.creativelab.R;
 
+import java.util.List;
+
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHolder> {
 
-    //private List<Movie> moviesList;
+    private Context context;
+    private List<LearnCards> dataList;
+    private OnClickListener mOnClickListener;
 
-    private LearnInformation learnInformation;
-    private Context mContext;
-
-    public VerticalAdapter(LearnInformation learnInformation, Context mContext) {
-        this.learnInformation = learnInformation;
-        this.mContext = mContext;
+    public VerticalAdapter(Context context, List<LearnCards> dataList) {
+        this.context = context;
+        this.dataList = dataList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.vertical_list, parent, false);
-
-        return new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.vertical_list, viewGroup, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        LearnLessons learnLessons = learnInformation.getLearnLessonsList().get(position);
-        holder.editor.setText(learnLessons.getEditor());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
 
-        LinearLayoutManager hs_linearLayout = new LinearLayoutManager(this.mContext, LinearLayoutManager.HORIZONTAL, false);
-        holder.horizontalRVChild.setLayoutManager(hs_linearLayout);
+        holder.editor.setText(dataList.get(i).getEditor());
+        List<LearnCardData> learnCardData = dataList.get(i).getLearnCard();
+
+        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, learnCardData, mOnClickListener);
         holder.horizontalRVChild.setHasFixedSize(true);
-        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(this.mContext,learnInformation.getLearnLessonsList().get(position).getLessons());
+        holder.horizontalRVChild.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRVChild.setAdapter(horizontalAdapter);
+
+        holder.horizontalRVChild.setNestedScrollingEnabled(false);
+
 
     }
 
     @Override
     public int getItemCount() {
-        return learnInformation.getLearnLessonsList().size();
+        return (dataList != null ? dataList.size() : 0);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView editor;
-        public RecyclerView horizontalRVChild;
+        TextView editor;
+        RecyclerView horizontalRVChild;
 
-        public ViewHolder(View view) {
+        public ViewHolder(@NonNull View view) {
             super(view);
             editor = view.findViewById(R.id.editor);
             horizontalRVChild = view.findViewById(R.id.horizontalRVChild);
