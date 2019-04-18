@@ -40,7 +40,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHo
         LinearLayoutManager hs_linearLayout = new LinearLayoutManager(this.mContext, LinearLayoutManager.HORIZONTAL, false);
         holder.horizontalRVChild.setLayoutManager(hs_linearLayout);
         holder.horizontalRVChild.setHasFixedSize(true);
-        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(this.mContext,learnInformation.getLearnLessonsList().get(position).getLearnArrayList());
+        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(this.mContext,learnInformation.getLearnLessonsList().get(position).getLessons());
         holder.horizontalRVChild.setAdapter(horizontalAdapter);
 
     }
@@ -56,8 +56,8 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            editor = (TextView) view.findViewById(R.id.editor);
-            horizontalRVChild = (RecyclerView)view.findViewById(R.id.horizontalRVChild);
+            editor = view.findViewById(R.id.editor);
+            horizontalRVChild = view.findViewById(R.id.horizontalRVChild);
         }
     }
 }

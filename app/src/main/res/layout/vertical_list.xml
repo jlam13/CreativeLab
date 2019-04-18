@@ -12,8 +12,10 @@
         android:id="@+id/editor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000"
         android:textSize="18sp"
-        android:textColor="#000"/>
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/editor"

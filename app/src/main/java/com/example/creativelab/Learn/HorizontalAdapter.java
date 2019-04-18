@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,6 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
     private LearnInformation learnInformation;
     private ArrayList<Learn> learnArrayList;
     private Context mContext;
-    private OnClickListener mOnClickListener;
-    private Learn learn;
 
     public HorizontalAdapter (Context mContext, ArrayList<Learn> learnArrayList) {
         this.learnArrayList = learnArrayList;
@@ -46,12 +43,14 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
             holder.lessonName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (learn.getLessonId().contains("z")) {
+                    if (learn.getLessonId().contains("T")) {
                         Intent intent = new Intent(mContext, TestActivity.class);
+                        intent.putExtra("card", learn.getLessonId());
                         mContext.startActivity(intent);
                     }
                     else {
                         Intent intent = new Intent(mContext, LessonActivity.class);
+                        intent.putExtra("card", learn.getLessonId());
                         mContext.startActivity(intent);
                     }
                     Toast.makeText(mContext, learn.getLessonName(), Toast.LENGTH_SHORT).show();
@@ -67,17 +66,13 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView lessonName;
-        OnClickListener onClickListener;
-
 
         public ViewHolder(View view) {
             super(view);
-            lessonName = (TextView) view.findViewById(R.id.lessonName);
+            lessonName = view.findViewById(R.id.lessonName);
 
         }
-            }
-
-    public interface OnClickListener {
-        void onClick (int position);
     }
+
+
 }

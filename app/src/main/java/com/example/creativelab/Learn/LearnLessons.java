@@ -4,7 +4,15 @@ import java.util.ArrayList;
 
 public class LearnLessons {
     private String editor;
-    private ArrayList<Learn> learnArrayList;
+    private ArrayList<Learn> lessons;
+
+    public LearnLessons() {
+    }
+
+    public LearnLessons(String editor, ArrayList<Learn> lessons) {
+        this.editor = editor;
+        this.lessons = lessons;
+    }
 
     public String getEditor() {
         return editor;
@@ -14,11 +22,11 @@ public class LearnLessons {
         this.editor = editor;
     }
 
-    public ArrayList<Learn> getLearnArrayList() {
-        return learnArrayList;
+    public ArrayList<Learn> getLessons() {
+        return lessons;
     }
 
-    public void setLearnArrayList(ArrayList<Learn> learnArrayList) {
-        this.learnArrayList = learnArrayList;
+    public void setLessons(ArrayList<Learn> lessons) {
+        this.lessons = lessons;
     }
 }
