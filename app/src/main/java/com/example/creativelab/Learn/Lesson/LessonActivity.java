@@ -11,6 +11,7 @@ public class LessonActivity extends AppCompatActivity {
 
     private LearnCardData learnCardData;
     private TextView lessonId;
+    private TextView youtubeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,12 @@ public class LessonActivity extends AppCompatActivity {
             String card = (String) extras.get("card");
             lessonId = findViewById(R.id.lessonId);
             lessonId.setText(card);
+
+            String youtube = (String) extras.get("youtube");
+            youtubeId = findViewById(R.id.yt);
+            youtubeId.setText(youtube);
+
+
         }
 
     }

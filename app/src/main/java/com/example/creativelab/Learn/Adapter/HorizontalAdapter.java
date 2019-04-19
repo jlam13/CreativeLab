@@ -51,6 +51,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
                 else {
                     Intent intent = new Intent(context, LessonActivity.class);
                     intent.putExtra("card", learnCardDataList.get(i).getLearnCardId());
+                    intent.putExtra("youtube", learnCardDataList.get(i).getYoutubeId());
                     context.startActivity(intent);
                 }
                 Toast.makeText(context, "" + learnCardDataList.get(i).getLearnCardId()  , Toast.LENGTH_SHORT).show();
