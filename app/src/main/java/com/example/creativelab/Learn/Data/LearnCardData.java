@@ -1,15 +1,16 @@
 package com.example.creativelab.Learn.Data;
 
 public class LearnCardData {
-    private String learnCardId, learnCardName;
+    private String learnCardId, learnCardName, youtubeId;
 
     public LearnCardData() {
 
     }
 
-    public LearnCardData(String learnCardId, String learnCardName) {
+    public LearnCardData(String learnCardId, String learnCardName, String youtubeId) {
         this.learnCardId = learnCardId;
         this.learnCardName = learnCardName;
+        this.youtubeId = youtubeId;
     }
 
     public String getLearnCardId() {
@@ -26,6 +27,14 @@ public class LearnCardData {
 
     public void setLearnCardName(String learnCardName) {
         this.learnCardName = learnCardName;
+    }
+
+    public String getYoutubeId() {
+        return youtubeId;
+    }
+
+    public void setYoutubeId(String youtubeId) {
+        this.youtubeId = youtubeId;
     }
 }
 
