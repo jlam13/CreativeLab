@@ -53,7 +53,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
                     intent.putExtra("card", learnCardDataList.get(i).getLearnCardId());
                     context.startActivity(intent);
                 }
-                Toast.makeText(context, "" + learnCardDataList.get(i).getLearnCardName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + learnCardDataList.get(i).getLearnCardId()  , Toast.LENGTH_SHORT).show();
             }
         });
 
