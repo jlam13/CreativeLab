@@ -10,6 +10,10 @@ import com.example.creativelab.Hub.HubFragment;
 import com.example.creativelab.Learn.LearnFragment;
 import com.example.creativelab.Profile.ProfileFragment;
 
+import com.example.creativelab.Hub.HubFragment;
+import com.example.creativelab.Learn.LearnFragment;
+import com.example.creativelab.Profile.ProfileFragment;
+
 public class DashboardActivity extends MainActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
