@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Quiz.FinshedQuiz"></activity>
+        <activity android:name=".Quiz.Quiz" />
         <activity android:name=".LoginSignup.SignUptest" />
         <activity android:name=".Learn.Lesson.TestActivity" />
         <activity android:name=".Learn.Lesson.LessonActivity" />
