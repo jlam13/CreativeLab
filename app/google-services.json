@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "962306735224",
+    "firebase_url": "https://creativelab-5401a.firebaseio.com",
+    "project_id": "creativelab-5401a",
+    "storage_bucket": "creativelab-5401a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962306735224:android:c7b3867e4f759f5e",
+        "android_client_info": {
+          "package_name": "com.example.creativelab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962306735224-5451n44l52sshrf36e8evs7rp08acv2m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.creativelab",
+            "certificate_hash": "d020b7e5bd18e1915831ab84af04c802220f49b8"
+          }
+        },
+        {
+          "client_id": "962306735224-fjl0fbesfab85ilq842na3fn2qu3g1ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW_Do6EYjW-8RxYQBcRKy-D6RgdZjL_i8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962306735224-fjl0fbesfab85ilq842na3fn2qu3g1ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
