@@ -12,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.creativelab.MainActivity;
+import com.example.creativelab.Profile.User;
 import com.example.creativelab.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUptest extends AppCompatActivity {
     //private static final String TAG = "SignUpActivity";
@@ -27,6 +30,7 @@ public class SignUptest extends AppCompatActivity {
    // private Button btn_signUp;
     private TextView link_login;
     private FirebaseAuth authentication;
+    private FirebaseAuth.AuthStateListener authListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,19 @@ public class SignUptest extends AppCompatActivity {
         input_email = (EditText) findViewById(R.id.input_email);
         input_password = (EditText) findViewById(R.id.input_password);
         input_confirmpassword = (EditText) findViewById(R.id.input_confirmpassword);
-       // btn_signUp = (Button) findViewById(R.id.btn_signUp);
+        // btn_signUp = (Button) findViewById(R.id.btn_signUp);
         link_login = (TextView) findViewById(R.id.link_login);
 
+
         authentication = FirebaseAuth.getInstance();
+
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null) {
+                    Intent intent = new Intent(SignUptest.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
          /*link_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +62,9 @@ public class SignUptest extends AppCompatActivity {
                 finish();
             }
         }); */
+                }
+            }
+        };
     }
 
     public void btn_signUpbutton_Click(View v){
@@ -61,8 +77,21 @@ public class SignUptest extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUptest.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+
+                            final String name = input_name.getText().toString().trim();
+                            final String email = input_email.getText().toString().trim();
+                            final String password = input_password.getText().toString().trim();
+                            User user = new User( name, email);
+                            authentication.signInWithEmailAndPassword(email, password);
+                            //Toast.makeText(ActivityRegister.this, user_id, Toast.LENGTH_SHORT).show();
+
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User");
+                            DatabaseReference currentUserDB = mDatabase.child(authentication.getCurrentUser().getUid());
+                            currentUserDB.child("name").setValue(name);
+                            currentUserDB.child("email").setValue(email);
                             Intent signup = new Intent(SignUptest.this, MainActivity.class);
                             startActivity(signup);
+
                         }
                         else
                             {
@@ -90,10 +119,32 @@ public class SignUptest extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = input_name.getText().toString();
-        String email = input_email.getText().toString();
-        String password = input_password.getText().toString();
-        String confirmpassword = input_confirmpassword.getText().toString();
+        String name = input_name.getText().toString().trim();
+        String email = input_email.getText().toString().trim();
+        String password = input_password.getText().toString().trim();
+        String confirmpassword = input_confirmpassword.getText().toString().trim();
+
+        authentication.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                        User user = new User( name, email);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                            .child(authentication.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                 if(task.isSuccessful()){
+                                 Toast.makeText(SignUptest.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                 }else{
+                                 }
+                                }
+                            });
+                        }else{
+                            Toast.makeText(SignUptest.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        }});
 
         // TODO: Implement your own signup logic here.
 

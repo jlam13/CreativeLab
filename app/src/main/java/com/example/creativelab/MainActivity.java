@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.creativelab.LoginSignup.SignUptest;
+import com.example.creativelab.Profile.ProfileInformation;
 import com.google.android.gms.common.oob.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent login = new Intent(MainActivity.this, DashboardActivity.class);
                                 login.putExtra("Email", authentication.getCurrentUser().getEmail());
+                                login.putExtra("Name", authentication.getCurrentUser().getDisplayName());
                                 startActivity(login);
                             } else {
                                 Log.e("Wrong email or password", task.getException().toString());
