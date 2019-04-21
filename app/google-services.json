@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "62125859406",
+    "firebase_url": "https://rvpop-a60e9.firebaseio.com",
+    "project_id": "rvpop-a60e9",
+    "storage_bucket": "rvpop-a60e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62125859406:android:c7b3867e4f759f5e",
+        "android_client_info": {
+          "package_name": "com.example.creativelab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62125859406-63bl2d8bv6eedj14uvapt5bmj1tb589u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.creativelab",
+            "certificate_hash": "36e5284f7ea0f3976192cdbfa7f6a614d1bd831c"
+          }
+        },
+        {
+          "client_id": "62125859406-uuan9ueno2v5ong2l5g6dtf01qg8no3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.creativelab",
+            "certificate_hash": "092665ce87a543293e747dc3193d00714ee9c059"
+          }
+        },
+        {
+          "client_id": "62125859406-4ken3ntln9pnjjuaui8jo2v9kn7h4cdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5gBPq8CySbeSSkEJd1Vrb3_cPDxvL40A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62125859406-4ken3ntln9pnjjuaui8jo2v9kn7h4cdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

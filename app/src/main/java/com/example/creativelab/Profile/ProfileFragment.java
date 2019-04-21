@@ -1,4 +1,4 @@
-package com.example.creativelab;
+package com.example.creativelab.Profile;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HubFragment extends Fragment {
+import com.example.creativelab.R;
+
+public class ProfileFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_hub, null);
+        return inflater.inflate(R.layout.fragment_profile, null);
     }
 }

@@ -6,6 +6,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import com.example.creativelab.Hub.HubFragment;
+import com.example.creativelab.Profile.ProfileFragment;
+
 public class DashboardActivity extends MainActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -13,7 +16,7 @@ public class DashboardActivity extends MainActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Sets the Learn tab as the default tab
+        // Sets the LearnCardData tab as the default tab
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         navigation.setSelectedItemId(R.id.navigation_learn);
