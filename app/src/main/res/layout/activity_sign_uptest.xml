@@ -19,7 +19,7 @@
             android:layout_height="158dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/Abode" />
+            android:background="@drawable/abode" />
 
         <!--  Name Label -->
         <android.support.design.widget.TextInputLayout
