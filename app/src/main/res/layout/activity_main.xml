@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/gkcbtrdl"
     android:fitsSystemWindows="true">
 
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:orientation="vertical"
         android:paddingLeft="24dp"
+        android:paddingTop="56dp"
         android:paddingRight="24dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:id="@+id/image"
+            android:layout_width="170dp"
+            android:layout_height="158dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:background="@mipmap/ic_launcher"
-            android:id="@+id/image"
-            />
+            android:background="@drawable/Abode" />
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -34,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/white"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -49,7 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@android:color/white"/>
         </android.support.design.widget.TextInputLayout>
 
 
@@ -58,28 +60,35 @@
             android:id="@+id/remembermecheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remember Me" />
+            android:text="Remember Me"
+            android:buttonTint="@color/white"
+            android:textColor="@android:color/white"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/loginbutton"
-            android:onClick="btn_login_Click"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:onClick="btn_login_Click"
+            android:background="@drawable/rounded_button"
             android:padding="12dp"
-            android:text="Login" />
+            android:text="Login"
+            android:textColor="@android:color/white"/>
 
         <!-- Create Account Button -->
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/createaccountbutton"
-            android:onClick="btn_signUp_Click"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:onClick="btn_signUp_Click"
+            android:background="@drawable/rounded_button"
             android:padding="12dp"
-            android:text="Create an Account" />
+            android:text="Create an Account"
+            android:textColor="@android:color/white"/>
+
 
     </LinearLayout>
 </ScrollView>
