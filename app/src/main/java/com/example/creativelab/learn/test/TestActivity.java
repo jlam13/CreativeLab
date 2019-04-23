@@ -1,3 +1,15 @@
+/*
+HELLO
+So the problem with this page is that the commented out section in
+private void UpdateQuestion
+only allows me to play the photoshop quiz and get the result for it
+Right now it what the quiz does is
+
+1. Runs the 10 questions associated with the card you clicked on
+2. Kills itself when it has no more questions to run
+
+ */
+
 package com.example.creativelab.learn.test;
 
 import android.content.DialogInterface;
@@ -129,14 +141,14 @@ public class TestActivity extends AppCompatActivity {
 
             mQuestionNumber++;
 
-            if (mQuestionNumber == 11) {
+/*            if (mQuestionNumber == 11) {
                 Intent intent = new Intent(getApplicationContext(), FinishTestActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("finalScore", mScore);
                 intent.putExtras(bundle);
                 TestActivity.this.finish();
                 startActivity(intent);
-            }
+            }*/
 
         } while (!questions.getCategory().equals(card));
 
