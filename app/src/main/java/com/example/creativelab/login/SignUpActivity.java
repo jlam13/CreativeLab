@@ -52,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         };
     }
 
-    public void signUpCLick (View v) {
+    public void btn_signUpbutton_Click (View v) {
         final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
         (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
