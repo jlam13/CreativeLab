@@ -1,11 +1,11 @@
 package com.example.creativelab.learn.test.data;
 
-public class Questions {
+public class QuestionsObsolete {
     private String question, answerA, answerB, correctAnswer, learnCardId;
 
-    public Questions() {}
+    public QuestionsObsolete() {}
 
-    public Questions(String question, String answerA, String answerB, String correctAnswer, String learnCardId) {
+    public QuestionsObsolete(String question, String answerA, String answerB, String correctAnswer, String learnCardId) {
         this.question = question;
         this.answerA = answerA;
         this.answerB = answerB;
