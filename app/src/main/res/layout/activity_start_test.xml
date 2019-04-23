@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gkcbtrdl"
     tools:context=".learn.test.StartTestActivity">
 
     <TextView
@@ -34,6 +35,8 @@
         android:text="Start test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testId" />
+        app:layout_constraintTop_toBottomOf="@+id/testId"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"/>
 
 </android.support.constraint.ConstraintLayout>

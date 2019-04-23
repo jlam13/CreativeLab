@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
         rememberMe = findViewById(R.id.rememberMeCheckbox);
     }
 
-    public void logInClick (View view){
+    public void btn_login_Click (View view){
         final ProgressDialog progressDialog= ProgressDialog.show(LogInActivity.this, "Please wait", "Processing...", true);
         (authentication.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString()))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -70,7 +70,7 @@ public class LogInActivity extends AppCompatActivity {
                 });
     }
 
-    public void signUpClick (View v){
+    public void btn_signUp_Click (View v){
         Intent signUp = new Intent (LogInActivity.this, SignUpActivity.class);
         startActivity(signUp);
     }
