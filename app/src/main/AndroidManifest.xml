@@ -13,10 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".learn.test.TestActivity" />
         <activity android:name=".login.SignUpActivity" />
-        <activity android:name=".learn.lesson.LessonActivity" />
-        <activity android:name=".learn.test.StartTestActivity" />
+        <activity
+            android:name=".learn.lesson.LessonActivity"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".learn.test.StartTestActivity"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".learn.test.FinishTestActivity"/>
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard" />
@@ -27,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

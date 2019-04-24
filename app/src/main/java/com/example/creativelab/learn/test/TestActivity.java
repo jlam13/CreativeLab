@@ -141,16 +141,17 @@ public class TestActivity extends AppCompatActivity {
 
             mQuestionNumber++;
 
-/*            if (mQuestionNumber == 11) {
+            if (mQuestionNumber == 11) {
                 Intent intent = new Intent(getApplicationContext(), FinishTestActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("finalScore", mScore);
                 intent.putExtras(bundle);
                 TestActivity.this.finish();
                 startActivity(intent);
-            }*/
-
+            }
         } while (!questions.getCategory().equals(card));
+
+
 
 
     }
