@@ -24,20 +24,19 @@ import android.widget.Toast;
 
 import com.example.creativelab.R;
 
-import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
 
-    private TextView mScoreView;
-    private TextView mQuestionView;
-    private Button mButtonChoice1;
-    private Button mButtonChoice2;
-    private Button mButtonChoice3;
+    private TextView scoreView;
+    private TextView question;
+    private Button choice1;
+    private Button choice2;
+    private Button choice3;
     private Questions questions;
 
-    private String mAnswer;
-    private int mScore = 0;
-    private int mQuestionNumber = 0;
+    private String answer;
+    private int score = 0;
+    private int questionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,130 +47,98 @@ public class TestActivity extends AppCompatActivity {
         if (extras != null) {
             final String card = (String) extras.get("card");
 
-            mScoreView = (TextView) findViewById(R.id.score);
-            mQuestionView = (TextView) findViewById(R.id.question);
-            mButtonChoice1 = (Button) findViewById(R.id.choice1);
-            mButtonChoice2 = (Button) findViewById(R.id.choice2);
-            mButtonChoice3 = (Button) findViewById(R.id.choice3);
-
+            scoreView = findViewById(R.id.score);
+            question = findViewById(R.id.question);
+            choice1 = findViewById(R.id.choice1);
+            choice2 = findViewById(R.id.choice2);
+            choice3 = findViewById(R.id.choice3);
 
             updateQuestion(card);
 
-            //Start of Button Listener for Button1
-            mButtonChoice1.setOnClickListener(new View.OnClickListener() {
+            choice1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //My logic for Button goes in here
-
-                    if (mButtonChoice1.getText() == mAnswer) {
-                        mScore = mScore + 10;
-                        updateScore(mScore);
+                    if (choice1.getText() == answer) {
+                        score =+ 10;
+                        updateScore(score);
                         updateQuestion(card);
-                        //This line of code is optiona
-                        Toast.makeText(TestActivity.this, "correct", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(TestActivity.this, "wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                         updateQuestion(card);
                     }
                 }
             });
 
-            //End of Button Listener for Button1
-
-            //Start of Button Listener for Button2
-            mButtonChoice2.setOnClickListener(new View.OnClickListener() {
+            choice2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //My logic for Button goes in here
-
-                    if (mButtonChoice2.getText() == mAnswer) {
-                        mScore = mScore + 10;
-                        updateScore(mScore);
-
-                            updateQuestion(card);
-
-                        //This line of code is optiona
-                        Toast.makeText(TestActivity.this, "correct", Toast.LENGTH_SHORT).show();
-
+                    if (choice2.getText() == answer) {
+                        score =+ 10;
+                        updateScore(score);
+                        updateQuestion(card);
+                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(TestActivity.this, "wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                         updateQuestion(card);
                     }
                 }
             });
 
-            //End of Button Listener for Button2
-
-
-            //Start of Button Listener for Button3
-            mButtonChoice3.setOnClickListener(new View.OnClickListener() {
+            choice3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //My logic for Button goes in here
-
-                    if (mButtonChoice3.getText() == mAnswer) {
-                        mScore = mScore + 10;
-                        updateScore(mScore);
+                    if (choice3.getText() == answer) {
+                        score =+ 10;
+                        updateScore(score);
                         updateQuestion(card);
-                        //This line of code is optiona
-                        Toast.makeText(TestActivity.this, "correct", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(TestActivity.this, "wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                         updateQuestion(card);
                     }
                 }
             });
-
-            //End of Button Listener for Button3
         }
     }
-
 
     private void updateQuestion(String card){
 
         do {
-            questions = Questions.getDummyQuestions().get(mQuestionNumber);
-            mQuestionView.setText(questions.getQuestion());
-            mButtonChoice1.setText(questions.getChoice1());
-            mButtonChoice2.setText(questions.getChoice2());
-            mButtonChoice3.setText(questions.getChoice3());
-            mAnswer = questions.getCorrect();
+            questions = Questions.getDummyQuestions().get(questionNumber);
+            question.setText(questions.getQuestion());
+            choice1.setText(questions.getChoice1());
+            choice2.setText(questions.getChoice2());
+            choice3.setText(questions.getChoice3());
+            answer = questions.getCorrect();
 
-            mQuestionNumber++;
-
-            if (mQuestionNumber == 11) {
+            questionNumber++;
+/*            if (questionNumber == 11) {
                 Intent intent = new Intent(getApplicationContext(), FinishTestActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("finalScore", mScore);
+                bundle.putInt("finalScore", score);
                 intent.putExtras(bundle);
                 TestActivity.this.finish();
                 startActivity(intent);
-            }
+            }*/
         } while (!questions.getCategory().equals(card));
-
-
-
-
     }
 
 
     private void updateScore(int point) {
-        mScoreView.setText("" + mScore);
+        scoreView.setText("" + score);
     }
 
     public void clickExit(View view) {
-        askToClose();
+        closePrompt();
     }
-
 
     @Override
     public void onBackPressed() {
-        askToClose();
+        closePrompt();
     }
 
-    private void askToClose (){
+    private void closePrompt (){
         AlertDialog.Builder builder = new AlertDialog.Builder(TestActivity.this);
         builder.setMessage("Are you sure you want to quit?");
         builder.setCancelable(true);

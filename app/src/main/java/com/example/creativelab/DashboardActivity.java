@@ -22,23 +22,13 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
+        // Logs out of the application if log out button is pressed in profile
         boolean finish = getIntent().getBooleanExtra("finish", false);
         if (finish) {
             startActivity(new Intent(this, LogInActivity.class));
             finish();
             return;
         }
-
-
-/*
-        //Accesses the TestData database
-        FirebaseOptions optionsTest = new FirebaseOptions.Builder()
-                .setApplicationId("1:139172763789:android:c7b3867e4f759f5e")
-                .setApiKey("AIzaSyAvAip5CYGgJXULaud02LOX__FZQNmUWcU")
-                .setDatabaseUrl("https://testdata-ca50a.firebaseio.com/")
-                .build();
-        FirebaseApp.initializeApp(this, optionsTest, "Test");*/
 
         // Sets the Learn tab as the default tab
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -49,7 +39,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         loadFragment(new LearnFragment());
 
 
-        // Accesses the LearnData database
+        // Connects the Learn database
         FirebaseOptions optionsLearn = new FirebaseOptions.Builder()
                 .setApplicationId("1:62125859406:android:c7b3867e4f759f5e")
                 .setApiKey("AIzaSyB5gBPq8CySbeSSkEJd1Vrb3_cPDxvL40A")
@@ -85,5 +75,4 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         }
         return loadFragment(fragment);
     }
-
 }

@@ -42,6 +42,7 @@ public class LearnFragment extends Fragment implements FirebaseLoadListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_learn, container, false);
 
+        // Accesses the Learn database project
         FirebaseApp learnApp = FirebaseApp.getInstance("Learn");
         FirebaseDatabase learnDatabase = FirebaseDatabase.getInstance(learnApp);
 
@@ -50,26 +51,24 @@ public class LearnFragment extends Fragment implements FirebaseLoadListener {
         firebaseLoadListener = this;
         verticalRVParent = rootView.findViewById(R.id.verticalRVParent);
         verticalRVParent.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        getFirebaseData();
-
+        getCardData();
         return rootView;
     }
 
-    private void getFirebaseData() {
+    // Firebase reference - https://www.youtube.com/watch?v=K2FSLZzYnnQ
+    private void getCardData() {
         dialog.show();
         learnData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<LearnCards> learnCards = new ArrayList<>();
-                for(DataSnapshot groupSnapshot:dataSnapshot.getChildren()) {
+                for(DataSnapshot gs:dataSnapshot.getChildren()) {
                     LearnCards learnCard = new LearnCards();
-                    learnCard.setEditor(groupSnapshot.child("editor").getValue(true).toString());
+                    learnCard.setEditor(gs.child("editor").getValue(true).toString());
                     GenericTypeIndicator<ArrayList<LearnCardData>> t = new GenericTypeIndicator<ArrayList<LearnCardData>>(){};
-                    learnCard.setLearnCard(groupSnapshot.child("learnCard").getValue(t));
+                    learnCard.setLearnCard(gs.child("learnCard").getValue(t));
                     learnCards.add(learnCard);
                 }
-
                 firebaseLoadListener.onFirebaseLoadSuccess(learnCards);
             }
 
