@@ -32,8 +32,8 @@ public class FinishTestActivity extends AppCompatActivity {
         mRetryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), StartTestActivity.class));
-                FinishTestActivity.this.finish();
+            FinishTestActivity.this.finish();
+            startActivity(new Intent(FinishTestActivity.this, StartTestActivity.class));
             }
         });
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.creativelab.hub.HubFragment;
@@ -14,12 +15,13 @@ import com.example.creativelab.profile.ProfileFragment;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
-public class DashboardActivity extends LogInActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
 
         boolean finish = getIntent().getBooleanExtra("finish", false);
         if (finish) {
@@ -27,6 +29,25 @@ public class DashboardActivity extends LogInActivity implements BottomNavigation
             finish();
             return;
         }
+
+
+/*
+        //Accesses the TestData database
+        FirebaseOptions optionsTest = new FirebaseOptions.Builder()
+                .setApplicationId("1:139172763789:android:c7b3867e4f759f5e")
+                .setApiKey("AIzaSyAvAip5CYGgJXULaud02LOX__FZQNmUWcU")
+                .setDatabaseUrl("https://testdata-ca50a.firebaseio.com/")
+                .build();
+        FirebaseApp.initializeApp(this, optionsTest, "Test");*/
+
+        // Sets the Learn tab as the default tab
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(this);
+        navigation.setSelectedItemId(R.id.navigation_learn);
+
+        // Loads the selected fragment
+        loadFragment(new LearnFragment());
+
 
         // Accesses the LearnData database
         FirebaseOptions optionsLearn = new FirebaseOptions.Builder()
@@ -36,21 +57,6 @@ public class DashboardActivity extends LogInActivity implements BottomNavigation
                 .build();
         FirebaseApp.initializeApp(this, optionsLearn, "Learn");
 
-        //Accesses the TestData database
-        FirebaseOptions optionsTest = new FirebaseOptions.Builder()
-                .setApplicationId("1:139172763789:android:c7b3867e4f759f5e")
-                .setApiKey("AIzaSyAvAip5CYGgJXULaud02LOX__FZQNmUWcU")
-                .setDatabaseUrl("https://testdata-ca50a.firebaseio.com/")
-                .build();
-        FirebaseApp.initializeApp(this, optionsTest, "Test");
-
-        // Sets the Learn tab as the default tab
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
-        navigation.setSelectedItemId(R.id.navigation_learn);
-
-        // Loads the selected fragment
-        loadFragment(new LearnFragment());
     }
 
     // Method to load the selected fragment
