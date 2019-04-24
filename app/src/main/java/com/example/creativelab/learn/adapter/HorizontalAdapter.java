@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.creativelab.learn.Interface.OnClickListener;
 import com.example.creativelab.learn.data.LearnCardData;
 import com.example.creativelab.learn.lesson.LessonActivity;
@@ -54,10 +52,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
                     intent.putExtra("youtube", learnCardDataList.get(i).getYoutubeId());
                     context.startActivity(intent);
                 }
-                Toast.makeText(context, "" + learnCardDataList.get(i).getLearnCardId()  , Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
@@ -77,9 +73,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
         }
         @Override
         public void onClick(View view) {
-
             onClickListener.onClick(view, getAdapterPosition());
         }
-
     }
 }

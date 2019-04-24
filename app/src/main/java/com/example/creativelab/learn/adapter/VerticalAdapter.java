@@ -20,7 +20,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHo
 
     private Context context;
     private List<LearnCards> dataList;
-    private OnClickListener mOnClickListener;
+    private OnClickListener onClickListener;
 
     public VerticalAdapter(Context context, List<LearnCards> dataList) {
         this.context = context;
@@ -35,18 +35,13 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-
         holder.editor.setText(dataList.get(i).getEditor());
         List<LearnCardData> learnCardData = dataList.get(i).getLearnCard();
-
-        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, learnCardData, mOnClickListener);
+        HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, learnCardData, onClickListener);
         holder.horizontalRVChild.setHasFixedSize(true);
         holder.horizontalRVChild.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRVChild.setAdapter(horizontalAdapter);
-
         holder.horizontalRVChild.setNestedScrollingEnabled(false);
-
-
     }
 
     @Override

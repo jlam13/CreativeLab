@@ -16,7 +16,6 @@ import com.example.creativelab.R;
 
 public class HubAdapter extends RecyclerView.Adapter<HubAdapter.ViewHolder> {
 
-
     private RSSObject rssObject;
     private Context context;
 
@@ -45,7 +44,6 @@ public class HubAdapter extends RecyclerView.Adapter<HubAdapter.ViewHolder> {
                 context.startActivity(browserIntent);
             }
         });
-
     }
 
     @Override
@@ -63,7 +61,6 @@ public class HubAdapter extends RecyclerView.Adapter<HubAdapter.ViewHolder> {
             title = item.findViewById(R.id.title);
             pubDate = item.findViewById(R.id.pubDate);
             content = item.findViewById(R.id.content);
-
             itemView.setOnClickListener(this);
         }
 
@@ -74,7 +71,6 @@ public class HubAdapter extends RecyclerView.Adapter<HubAdapter.ViewHolder> {
         @Override
         public void onClick(View view) {
             onClickListener.onClick(view, getAdapterPosition());
-
         }
     }
 }
