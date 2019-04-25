@@ -10,7 +10,8 @@ import com.example.creativelab.R;
 public class StartTestActivity extends AppCompatActivity {
 
     private TextView editor;
-    private Button button;
+    private Button start;
+    private Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,28 +21,8 @@ public class StartTestActivity extends AppCompatActivity {
         if (extras != null) {
             final String card = (String) extras.get("card");
 
-            editor = findViewById(R.id.editor);
-            if (card == "T1") {
-                editor.setText("Have you mastered Photoshop?");
-            }
-            else if (card == "T2") {
-                editor.setText("Have you mastered Illustrator?");
-            }
-            else if (card == "T3") {
-                editor.setText("Have you mastered Premiere Pro?");
-            }
-            else if (card == "T4") {
-                editor.setText("Think you've mastered After Effects?");
-            }
-            else if (card == "T5") {
-                editor.setText("Have you mastered Lightroom?");
-            }
-            else if (card == "T6") {
-                editor.setText("Have you mastered InDesign?");
-            }
-
-            button = findViewById(R.id.button);
-            button.setOnClickListener(new View.OnClickListener() {
+            start = findViewById(R.id.startButton);
+            start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(StartTestActivity.this, TestActivity.class);
@@ -49,6 +30,15 @@ public class StartTestActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            back = findViewById(R.id.goBackButton);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
         }
     }
 }

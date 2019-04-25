@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
-        android:text="Photoshop"
+        android:text="Are you ready?"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#fff"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editor" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
@@ -48,7 +48,7 @@
         android:textColor="@android:color/white"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/goBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -56,7 +56,7 @@
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/startButton"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"/>
 
