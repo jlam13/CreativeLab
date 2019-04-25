@@ -8,34 +8,55 @@
     tools:context=".learn.test.StartTestActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/editor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
-        android:text="Test Activity"
+        android:text="Photoshop"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/testId"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="TextView"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:text="The following will test you on all topics covered in the lessons. There will be 10 questions, with each correct answer worth 10 points. Good luck!"
+        android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/editor" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
-        android:text="Start test"
+        android:text="Yes! I'm ready to start"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testId"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="No I'm not ready"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"/>
 
