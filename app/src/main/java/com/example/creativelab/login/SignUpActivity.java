@@ -34,6 +34,14 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        link_login = findViewById(R.id.link_login);
+        link_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         input_name = findViewById(R.id.input_name);
         input_email = findViewById(R.id.input_email);
         input_password = findViewById(R.id.input_password);
@@ -52,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         };
     }
 
-    public void btn_signUpbutton_Click (View v) {
+    public void btn_signUp_Click (View v) {
         final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
         (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

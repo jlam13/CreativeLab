@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/finalScore"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="96dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
         android:padding="16dp"
