@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.example.creativelab.R;
 
+import java.util.Locale;
+
 
 public class TestActivity extends AppCompatActivity {
 
@@ -36,8 +38,8 @@ public class TestActivity extends AppCompatActivity {
 
     private String answer;
     private int score = 0;
-    private int questionNumber = 0;
     private TextView test;
+    private int questionNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +48,10 @@ public class TestActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            final String card = (String) extras.get("card");
+            final int card = (int) extras.get("number");
 
-            test = findViewById(R.id.test);
-            test.setText(card);
+
+            questionNumber = card;
 
             scoreView = findViewById(R.id.score);
             question = findViewById(R.id.question);
@@ -65,11 +67,28 @@ public class TestActivity extends AppCompatActivity {
                     if (choice1.getText() == answer) {
                         score =+ 10;
                         updateScore(score);
-                        updateQuestion(card);
-                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
-                        updateQuestion(card);
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        } else {
+                            updateQuestion(card);
+                        }
+                    }
+                    else {
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        }  else {
+                            updateQuestion(card);
+                        }
                     }
                 }
             });
@@ -80,14 +99,32 @@ public class TestActivity extends AppCompatActivity {
                     if (choice2.getText() == answer) {
                         score =+ 10;
                         updateScore(score);
-                        updateQuestion(card);
-                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
-                        updateQuestion(card);
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        } else {
+                            updateQuestion(card);
+                        }
+                    }
+                    else {
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        }  else {
+                            updateQuestion(card);
+                        }
                     }
                 }
             });
+
 
             choice3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,20 +132,35 @@ public class TestActivity extends AppCompatActivity {
                     if (choice3.getText() == answer) {
                         score =+ 10;
                         updateScore(score);
-                        updateQuestion(card);
-                        Toast.makeText(TestActivity.this, "Correct", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(TestActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
-                        updateQuestion(card);
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        } else {
+                            updateQuestion(card);
+                        }
+                    }
+                    else {
+                        if (questionNumber == card + 10) {
+                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("finalScore", score);
+                            i.putExtras(bundle);
+                            TestActivity.this.finish();
+                            startActivity(i);
+                        }  else {
+                            updateQuestion(card);
+                        }
                     }
                 }
             });
         }
     }
 
-    private void updateQuestion(String card){
-
-        do {
+    private void updateQuestion(int card) {
             questions = Questions.getDummyQuestions().get(questionNumber);
             question.setText(questions.getQuestion());
             choice1.setText(questions.getChoice1());
@@ -116,16 +168,7 @@ public class TestActivity extends AppCompatActivity {
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
 
-            if (questionNumber == questions.getCorrect().length()) {
-                Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("finalScore", score);
-                intent.putExtras(bundle);
-                TestActivity.this.finish();
-                startActivity(intent);
-            }
             questionNumber++;
-        } while (!questions.getCategory().equals(card));
     }
 
 
