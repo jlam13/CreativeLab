@@ -9,10 +9,17 @@ import android.widget.TextView;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FinishTestActivity extends AppCompatActivity {
     TextView finalScore;
     Button retry, home;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseDatabase database;
+    DatabaseReference questionScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +30,20 @@ public class FinishTestActivity extends AppCompatActivity {
         retry = findViewById(R.id.retryButton);
         home = findViewById(R.id.homeButton);
 
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        questionScore = database.getReference("QuestionScore");
 
-        Bundle bundle = getIntent().getExtras();
-        int score = bundle.getInt("finalScore");
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            int score = extras.getInt("finalScore");
+            finalScore.setText("You scored " + score + " out of 100");
+/*            questionScore.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
+                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId),
+                            Common.currentUser.getName(),
+                            String.valueOf(score)));*/
+        }
 
-        finalScore.setText("You scored " + score + " out of 100");
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

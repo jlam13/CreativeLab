@@ -48,10 +48,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
                 .build();
         FirebaseApp.initializeApp(this, optionsLearn, "Learn");
         }
-
-
-
-
+        
     // Method to load the selected fragment
     private boolean loadFragment(Fragment fragment) {
         if(fragment != null) {
