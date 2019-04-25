@@ -1,15 +1,3 @@
-/*
-HELLO
-So the problem with this page is that the commented out section in
-private void UpdateQuestion
-only allows me to play the photoshop quiz and get the result for it
-Right now it what the quiz does is
-
-1. Runs the 10 questions associated with the card you clicked on
-2. Kills itself when it has no more questions to run
-
- */
-
 package com.example.creativelab.learn.test;
 
 import android.content.DialogInterface;
@@ -20,12 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.creativelab.R;
-
-import java.util.Locale;
-
 
 public class TestActivity extends AppCompatActivity {
 
@@ -38,7 +21,6 @@ public class TestActivity extends AppCompatActivity {
 
     private String answer;
     private int score = 0;
-    private TextView test;
     private int questionNumber;
 
     @Override
@@ -49,10 +31,7 @@ public class TestActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             final int card = (int) extras.get("number");
-
-
             questionNumber = card;
-
             scoreView = findViewById(R.id.score);
             question = findViewById(R.id.question);
             choice1 = findViewById(R.id.choice1);
@@ -65,30 +44,14 @@ public class TestActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (choice1.getText() == answer) {
-                        score =+ 10;
+                        score += 10;
                         updateScore(score);
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        } else {
                             updateQuestion(card);
-                        }
+
                     }
                     else {
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        }  else {
                             updateQuestion(card);
-                        }
+
                     }
                 }
             });
@@ -97,30 +60,14 @@ public class TestActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (choice2.getText() == answer) {
-                        score =+ 10;
+                        score += 10;
                         updateScore(score);
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        } else {
                             updateQuestion(card);
-                        }
+
                     }
                     else {
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        }  else {
                             updateQuestion(card);
-                        }
+
                     }
                 }
             });
@@ -130,49 +77,41 @@ public class TestActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (choice3.getText() == answer) {
-                        score =+ 10;
+                        score += 10;
                         updateScore(score);
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        } else {
                             updateQuestion(card);
                         }
-                    }
+
                     else {
-                        if (questionNumber == card + 10) {
-                            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("finalScore", score);
-                            i.putExtras(bundle);
-                            TestActivity.this.finish();
-                            startActivity(i);
-                        }  else {
                             updateQuestion(card);
                         }
                     }
-                }
+
             });
         }
     }
 
     private void updateQuestion(int card) {
+        if (questionNumber == card + 10) {
+            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("finalScore", score);
+            i.putExtras(bundle);
+            TestActivity.this.finish();
+            startActivity(i);
+        } else {
             questions = Questions.getDummyQuestions().get(questionNumber);
             question.setText(questions.getQuestion());
             choice1.setText(questions.getChoice1());
             choice2.setText(questions.getChoice2());
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
+            questionNumber++;}
 
-            questionNumber++;
     }
 
 
-    private void updateScore(int point) {
+    private void updateScore(int i) {
         scoreView.setText("" + score);
     }
 

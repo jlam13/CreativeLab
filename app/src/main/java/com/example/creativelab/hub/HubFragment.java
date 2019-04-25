@@ -45,7 +45,7 @@ public class HubFragment extends Fragment {
     private void loadRSS() {
 
         dialog.show();
-        @SuppressLint("StaticFieldLeak") AsyncTask<String, String, String> loadRSSAsync = new AsyncTask<String, String, String>() {
+        AsyncTask<String, String, String> loadRSSAsync = new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... strings) {
                 String result;
