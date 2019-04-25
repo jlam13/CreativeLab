@@ -24,6 +24,8 @@ public class HubFragment extends Fragment {
     AlertDialog dialog;
     RecyclerView recyclerView;
     RSSObject rssObject;
+    private final String RSSLink = "https://www.digitalartsonline.co.uk/rss/feeds/digitalarts-tutorials.xml";
+    private final String RSSAPI = "https://api.rss2json.com/v1/api.json?rss_url=";
 
     @Nullable
     @Override
@@ -61,8 +63,8 @@ public class HubFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         };
-        String RSSJsonAPI = "https://api.rss2json.com/v1/api.json?rss_url=";
-        String RSSLink= "https://www.digitalartsonline.co.uk/rss/feeds/digitalarts-tutorials.xml";
-        loadRSSAsync.execute(RSSJsonAPI + RSSLink);
+        StringBuilder getData = new StringBuilder(RSSAPI);
+        getData.append(RSSLink);
+        loadRSSAsync.execute(getData.toString());
     }
 }
