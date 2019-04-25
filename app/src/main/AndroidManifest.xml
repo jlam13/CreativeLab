@@ -26,7 +26,8 @@
             android:name=".learn.test.FinishTestActivity"/>
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_dashboard" />
+            android:label="@string/title_activity_dashboard"
+            android:launchMode="singleTask"/>
         <activity android:name=".login.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
