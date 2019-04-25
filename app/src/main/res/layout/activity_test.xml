@@ -74,6 +74,15 @@
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
         android:text="Answer B" />
+    <Button
+        android:id="@+id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@android:color/white"
+        android:text="Answer B" />
 
 
 </LinearLayout>
