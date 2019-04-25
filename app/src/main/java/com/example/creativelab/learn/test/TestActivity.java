@@ -37,6 +37,7 @@ public class TestActivity extends AppCompatActivity {
     private String answer;
     private int score = 0;
     private int questionNumber = 0;
+    private TextView test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class TestActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             final String card = (String) extras.get("card");
+
+            test = findViewById(R.id.test);
+            test.setText(card);
 
             scoreView = findViewById(R.id.score);
             question = findViewById(R.id.question);
@@ -112,7 +116,7 @@ public class TestActivity extends AppCompatActivity {
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
 
-            if (questions.getCategory().equals(card)) {
+            if (questionNumber == questions.getCorrect().length()) {
                 Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("finalScore", score);
@@ -120,9 +124,7 @@ public class TestActivity extends AppCompatActivity {
                 TestActivity.this.finish();
                 startActivity(intent);
             }
-
             questionNumber++;
-
         } while (!questions.getCategory().equals(card));
     }
 
