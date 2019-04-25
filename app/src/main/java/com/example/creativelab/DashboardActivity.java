@@ -38,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         // Loads the selected fragment
         loadFragment(new LearnFragment());
 
+        // Connects the Learn database only once
 
         // Connects the Learn database
         FirebaseOptions optionsLearn = new FirebaseOptions.Builder()
@@ -46,8 +47,10 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
                 .setDatabaseUrl("https://rvpop-a60e9.firebaseio.com/")
                 .build();
         FirebaseApp.initializeApp(this, optionsLearn, "Learn");
+        }
 
-    }
+
+
 
     // Method to load the selected fragment
     private boolean loadFragment(Fragment fragment) {

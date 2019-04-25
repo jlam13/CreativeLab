@@ -16,6 +16,7 @@ public class LessonActivity extends AppCompatActivity {
 
     private static final String TAG = "LogInActivity";
     private Button back;
+    private TextView information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class LessonActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String card = (String) extras.get("card");
+            String learnInformation = (String) extras.get("learnInformation");
 
             final String youtube = (String) extras.get("youtube");
 
@@ -43,6 +44,9 @@ public class LessonActivity extends AppCompatActivity {
                     Log.d(TAG, "onClick: Done Initialising.");
                 }
             });
+
+            information = findViewById(R.id.lesson);
+            information.setText(learnInformation);
 
             back = findViewById(R.id.goBackButton);
             back.setOnClickListener(new View.OnClickListener() {

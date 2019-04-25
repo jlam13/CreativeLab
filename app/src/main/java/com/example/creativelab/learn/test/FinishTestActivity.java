@@ -33,7 +33,8 @@ public class FinishTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             FinishTestActivity.this.finish();
-            startActivity(new Intent(FinishTestActivity.this, StartTestActivity.class));
+            Intent intent = new Intent(FinishTestActivity.this, DashboardActivity.class);
+            startActivity(intent);
             }
         });
 
