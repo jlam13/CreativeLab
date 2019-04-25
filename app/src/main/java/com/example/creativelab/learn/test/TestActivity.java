@@ -112,7 +112,7 @@ public class TestActivity extends AppCompatActivity {
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
 
-            if (questionNumber == 60) {
+            if (questions.getCategory().equals(card)) {
                 Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("finalScore", score);
