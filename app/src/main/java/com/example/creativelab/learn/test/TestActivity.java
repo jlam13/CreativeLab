@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.creativelab.R;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView scoreView;
     private TextView question;
@@ -40,54 +42,26 @@ public class TestActivity extends AppCompatActivity {
 
             updateQuestion(card);
 
-            choice1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (choice1.getText() == answer) {
-                        score += 10;
-                        updateScore(score);
-                            updateQuestion(card);
+            choice1.setOnClickListener(this);
+            choice2.setOnClickListener(this);
+            choice3.setOnClickListener(this);
+            choice1.setTag(card);
+            choice2.setTag(card);
+            choice3.setTag(card);
+        }
+    }
 
-                    }
-                    else {
-                            updateQuestion(card);
-
-                    }
-                }
-            });
-
-            choice2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (choice2.getText() == answer) {
-                        score += 10;
-                        updateScore(score);
-                            updateQuestion(card);
-
-                    }
-                    else {
-                            updateQuestion(card);
-
-                    }
-                }
-            });
-
-
-            choice3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (choice3.getText() == answer) {
-                        score += 10;
-                        updateScore(score);
-                            updateQuestion(card);
-                        }
-
-                    else {
-                            updateQuestion(card);
-                        }
-                    }
-
-            });
+    @Override
+    public void onClick(View v) {
+        if (choice2.getText() == answer) {
+            score += 10;
+            updateScore(score);
+            updateQuestion((Integer) v.getTag());
+            Toast.makeText(TestActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            updateQuestion((Integer) v.getTag());
+            Toast.makeText(TestActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -106,10 +80,9 @@ public class TestActivity extends AppCompatActivity {
             choice2.setText(questions.getChoice2());
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
-            questionNumber++;}
-
+            questionNumber++;
+        }
     }
-
 
     private void updateScore(int i) {
         scoreView.setText("" + score);
@@ -144,4 +117,6 @@ public class TestActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
 }
