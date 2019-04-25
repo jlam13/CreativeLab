@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="Score"
+            android:layout_margin="16dp"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="0"
+            android:layout_margin="16dp"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
@@ -36,10 +38,11 @@
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="160dp"
+        android:textAlignment="center"
         android:padding="8dp"
         android:text="A question should be here"
+        android:layout_margin="16dp"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -47,8 +50,8 @@
         android:id="@+id/choice1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:padding="16dp"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
         android:text="Answer A" />
@@ -57,8 +60,8 @@
         android:id="@+id/choice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:padding="16dp"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
         android:text="Answer B" />
@@ -66,8 +69,8 @@
         android:id="@+id/choice3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:padding="16dp"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
         android:text="Answer B" />
