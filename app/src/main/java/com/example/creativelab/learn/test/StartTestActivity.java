@@ -12,6 +12,7 @@ public class StartTestActivity extends AppCompatActivity {
     private TextView editor;
     private Button start;
     private Button back;
+    private Questions questions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class StartTestActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(StartTestActivity.this, TestActivity.class);
                     intent.putExtra("card", card);
+
                     startActivity(intent);
                 }
             });
