@@ -9,27 +9,26 @@ import android.widget.TextView;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
-import com.example.creativelab.learn.LearnFragment;
 
 public class FinishTestActivity extends AppCompatActivity {
-    TextView mGrade, mFinalScore;
-    Button mRetryButton;
+    TextView finalScore;
+    Button retry, home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_test);
 
-        mGrade = (TextView) findViewById(R.id.grade);
-        mFinalScore = (TextView) findViewById(R.id.outOf);
-        mRetryButton = (Button) findViewById(R.id.retry);
+        finalScore = findViewById(R.id.finalScore);
+        retry = findViewById(R.id.retryButton);
+        home = findViewById(R.id.homeButton);
 
 
         Bundle bundle = getIntent().getExtras();
         int score = bundle.getInt("finalScore");
 
-        mFinalScore.setText("You scored " + score + " out of 100");
-        mRetryButton.setOnClickListener(new View.OnClickListener() {
+        finalScore.setText("You scored " + score + " out of 100");
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             FinishTestActivity.this.finish();
