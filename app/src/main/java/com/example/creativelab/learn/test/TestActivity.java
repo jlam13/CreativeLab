@@ -112,15 +112,17 @@ public class TestActivity extends AppCompatActivity {
             choice3.setText(questions.getChoice3());
             answer = questions.getCorrect();
 
-            questionNumber++;
-/*            if (questionNumber == 11) {
-                Intent intent = new Intent(getApplicationContext(), FinishTestActivity.class);
+            if (questionNumber == 60) {
+                Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("finalScore", score);
                 intent.putExtras(bundle);
                 TestActivity.this.finish();
                 startActivity(intent);
-            }*/
+            }
+
+            questionNumber++;
+
         } while (!questions.getCategory().equals(card));
     }
 
