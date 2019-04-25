@@ -50,6 +50,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Vi
                     Intent intent = new Intent(context, LessonActivity.class);
                     intent.putExtra("learnCardId", learnCardDataList.get(i).getLearnCardId());
                     intent.putExtra("youtube", learnCardDataList.get(i).getYoutubeId());
+                    intent.putExtra("learnInformation", learnCardDataList.get(i).getLearnInformation());
                     context.startActivity(intent);
                 }
             }
