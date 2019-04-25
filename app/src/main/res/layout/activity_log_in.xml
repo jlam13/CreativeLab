@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/gkcbtrdl"
     android:fitsSystemWindows="true">
 
@@ -10,23 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="96dp"
         android:paddingLeft="24dp"
-        android:paddingTop="56dp"
         android:paddingRight="24dp">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="170dp"
-            android:layout_height="158dp"
+            android:layout_width="83dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/abode" />
+            android:background="@drawable/abode"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="CreativeLab"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="40dp"
+            android:textStyle="bold" />
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
 
             <EditText
@@ -42,7 +54,6 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
 
             <EditText
@@ -70,25 +81,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:onClick="btn_login_Click"
             android:background="@drawable/rounded_button"
-            android:padding="12dp"
+            android:onClick="btn_login_Click"
+            android:padding="16dp"
             android:text="Login"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
 
         <!-- Create Account Button -->
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/createAccountButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:onClick="btn_signUp_Click"
             android:background="@drawable/rounded_button"
-            android:padding="12dp"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Create an Account"
             android:textColor="@android:color/white"/>
-
 
     </LinearLayout>
 </ScrollView>
