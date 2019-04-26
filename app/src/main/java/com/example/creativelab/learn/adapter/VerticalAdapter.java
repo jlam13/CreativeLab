@@ -16,6 +16,7 @@ import com.example.creativelab.R;
 
 import java.util.List;
 
+// RecyclerView that contains the horizontal cards
 public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.ViewHolder> {
 
     private Context context;

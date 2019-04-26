@@ -58,17 +58,5 @@
         android:text="Logout"
         android:textColor="@android:color/white" />
 
-    <Button
-        android:id="@+id/ChangePasswordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="291dp"
-        android:background="@drawable/rounded_button"
-        android:text="Change Password"
-        android:textColor="@android:color/white" />
-
 
 </RelativeLayout>
