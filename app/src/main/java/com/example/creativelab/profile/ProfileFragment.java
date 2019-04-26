@@ -84,8 +84,8 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(this.getContext(), DashboardActivity.class);
         intent.putExtra("finish", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+        this.getActivity().finish();
         startActivity(intent);
-        getActivity().finish();
     }
 
 
