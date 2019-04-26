@@ -17,21 +17,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
 
 public class FinishTestActivity extends AppCompatActivity {
     TextView finalScore;
-    Button retry, home;
+    Button home;
     FirebaseAuth auth;
-    FirebaseAuth.AuthStateListener authStateListener;
     FirebaseDatabase database;
     DatabaseReference questionScore;
     String uid;
-    List<Results> list;
-    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +34,6 @@ public class FinishTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finish_test);
 
         finalScore = findViewById(R.id.finalScore);
-        retry = findViewById(R.id.retryButton);
         home = findViewById(R.id.homeButton);
 
 
@@ -51,37 +45,9 @@ public class FinishTestActivity extends AppCompatActivity {
 
             FirebaseApp.initializeApp(this);
             auth = FirebaseAuth.getInstance();
-            database = FirebaseDatabase.getInstance();
-            questionScore = database.getReference();
             final FirebaseUser user = auth.getCurrentUser();
             uid = user.getUid();
-
-            questionScore = database.getReference("User");
-
-            questionScore.child(uid).child("test").child(card).setValue(score);
-
-/*            questionScore.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    int points = dataSnapshot.child(uid).getValue(User.class).getPoints() + score;
-                    finalScore.setText(String.valueOf(points));
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });*/
-
-
-
-//            questionScore.child("T1").setValue(score);
-
-
-/*            questionScore.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
-                    .setValue(new QuestionScore(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId),
-                            Common.currentUser.getName(),
-                            String.valueOf(score)));*/
+            updateScore(score, uid, card);
         }
 
         home.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +56,25 @@ public class FinishTestActivity extends AppCompatActivity {
             FinishTestActivity.this.finish();
             Intent intent = new Intent(FinishTestActivity.this, DashboardActivity.class);
             startActivity(intent);
+            }
+        });
+
+    }
+
+    private void updateScore(final int score, String uid, String card) {
+        DatabaseReference questionScore = FirebaseDatabase.getInstance().getReference();
+        questionScore.child("User").child(uid).child("test").child(card).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataSnapshot.getRef().setValue(score);
+                Integer card = dataSnapshot.getValue(Integer.class);
+                if (card != null) {
+                    card = card + score;
+                    dataSnapshot.getRef().setValue(card);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 

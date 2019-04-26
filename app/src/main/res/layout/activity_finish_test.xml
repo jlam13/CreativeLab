@@ -33,7 +33,7 @@
         android:text="You got 100 out of 100"/>
 
     <Button
-        android:id="@+id/retryButton"
+        android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/finalScore"
@@ -42,18 +42,8 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
         android:padding="16dp"
-        android:text="Retry"
+        android:text="Back to lessons"
         android:textColor="#fff" />
 
-    <Button
-        android:layout_below="@+id/retryButton"
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to lessons"
-        android:background="@drawable/rounded_button"
-        android:padding="16dp"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
