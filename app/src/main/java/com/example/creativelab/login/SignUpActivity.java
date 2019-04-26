@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
-                finish();
+                onBackPressed();
             }
         });
 
@@ -112,8 +112,9 @@ public class SignUpActivity extends AppCompatActivity {
                             DatabaseReference currentUserDB = mDatabase.child(authentication.getCurrentUser().getUid());
                             currentUserDB.child("name").setValue(name);
                             currentUserDB.child("email").setValue(email);
-                            Intent signUp = new Intent(SignUpActivity.this, LogInActivity.class);
-                            startActivity(signUp);
+                            Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                            SignUpActivity.this.finish();
+                            startActivity(intent);
                         } else {
                             Log.e("Unsuccessful", task.getException().toString());
                             Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

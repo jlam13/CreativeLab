@@ -70,8 +70,11 @@ public class FinishTestActivity extends AppCompatActivity {
                 if (card != null) {
                     card = card + score;
                     dataSnapshot.getRef().setValue(card);
+                    total.setText("Total score for this topic: " + card);
                 }
-                total.setText("Total score for this topic: " + card);
+                else {
+                    total.setText("Total score for this topic: " + score);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

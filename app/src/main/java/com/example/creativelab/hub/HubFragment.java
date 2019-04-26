@@ -66,7 +66,7 @@ public class HubFragment extends Fragment {
         showScores(uid);
 
         // Query & ValueEventListener reference - https://www.youtube.com/watch?v=WeoryL3XyA4
-        Query order = FirebaseDatabase.getInstance().getReference("User").orderByChild("total").limitToFirst(5);
+        Query order = FirebaseDatabase.getInstance().getReference("User").orderByChild("total").limitToFirst(10);
         order.addListenerForSingleValueEvent(valueEventListener);
 
         Query self = FirebaseDatabase.getInstance().getReference("User").orderByChild(uid).equalTo(uid);
@@ -78,7 +78,6 @@ public class HubFragment extends Fragment {
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            userList.clear();
             if (dataSnapshot.exists()) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     User users = ds.getValue(User.class);

@@ -30,7 +30,7 @@
         android:textColor="#fff"
         android:layout_margin="16dp"
         android:id="@+id/finalScore"
-        android:text="You got 100 out of 100"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/total"
@@ -40,7 +40,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Total score"
+        android:text=""
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="20sp" />
