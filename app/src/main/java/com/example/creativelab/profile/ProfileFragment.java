@@ -1,5 +1,6 @@
 package com.example.creativelab.profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
+import com.example.creativelab.login.ForgotPasswordActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,11 +36,13 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference databaseReference;
     private FirebaseDatabase db;
     private String userId;
+    Context context;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        context = rootView.getContext();
 
         FirebaseApp.initializeApp(this.getContext());
         authentication = FirebaseAuth.getInstance();
@@ -60,13 +64,13 @@ public class ProfileFragment extends Fragment {
         profileName = rootView.findViewById(R.id.profileName);
         profileEmail = rootView.findViewById(R.id.profileEmail);
         logOutButton = rootView.findViewById(R.id.logOutButton);
+
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signOut();
             }
         });
-
         return rootView;
     }
 
@@ -84,8 +88,8 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(this.getContext(), DashboardActivity.class);
         intent.putExtra("finish", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
-        this.getActivity().finish();
         startActivity(intent);
+        getActivity().finish();
     }
 
 
