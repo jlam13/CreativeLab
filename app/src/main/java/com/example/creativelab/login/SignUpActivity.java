@@ -66,6 +66,22 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void btn_signUpButton_Click(View v) {
+        Log.d(TAG, "SignUp");
+
+        if (!validate()) {
+            onSignUpFailed();
+            return;
+        }
+        btn_signUpButton.setEnabled(false);
+        new Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        onSignUpSuccess();
+                        onSignUpFailed();
+                    }
+                }, 3000);
         final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
         (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -97,6 +113,16 @@ public class SignUpActivity extends AppCompatActivity {
 
                 });
 
+    }
+    public void onSignUpSuccess() {
+        btn_signUpButton.setEnabled(true);
+        setResult(RESULT_OK, null);
+        finish();
+    }
+    public void onSignUpFailed() {
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+
+        btn_signUpButton.setEnabled(true);
     }
 
         public boolean validate() {
