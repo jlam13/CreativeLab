@@ -73,54 +73,60 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
         btn_signUpButton.setEnabled(false);
+
+        final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
+
+        String name = input_name.getText().toString();
+        String email = input_email.getText().toString();
+        String password = input_password.getText().toString();
         new Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
                         onSignUpSuccess();
-                        onSignUpFailed();
+                        //onSignUpFailed();
+                        progressDialog.dismiss();
                     }
                 }, 3000);
-        final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
-        (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressDialog.dismiss();
-                            if (task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                                final String name = input_name.getText().toString().trim();
-                                final String email = input_email.getText().toString().trim();
-                                final String password = input_password.getText().toString().trim();
-                                final String confirmpassword = input_confirm_password.getText().toString().trim();
-                                User user = new User(name, email);
-                                authentication.signInWithEmailAndPassword(email, password);
-                                //Toast.makeText(ActivityRegister.this, user_id, Toast.LENGTH_SHORT).show();
 
-                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User");
-                                DatabaseReference currentUserDB = mDatabase.child(authentication.getCurrentUser().getUid());
-                                currentUserDB.child("name").setValue(name);
-                                currentUserDB.child("email").setValue(email);
-                                Intent signup = new Intent(SignUpActivity.this, LogInActivity.class);
-                                startActivity(signup);
-
-                            } else {
-                                Log.e("Unsuccessful", task.getException().toString());
-                                Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                });
 
     }
     public void onSignUpSuccess() {
         btn_signUpButton.setEnabled(true);
         setResult(RESULT_OK, null);
+        (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                            final String name = input_name.getText().toString().trim();
+                            final String email = input_email.getText().toString().trim();
+                            final String password = input_password.getText().toString().trim();
+                            final String confirmpassword = input_confirm_password.getText().toString().trim();
+                            User user = new User(name, email);
+                            authentication.signInWithEmailAndPassword(email, password);
+                            //Toast.makeText(ActivityRegister.this, user_id, Toast.LENGTH_SHORT).show();
+
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User");
+                            DatabaseReference currentUserDB = mDatabase.child(authentication.getCurrentUser().getUid());
+                            currentUserDB.child("name").setValue(name);
+                            currentUserDB.child("email").setValue(email);
+                            Intent signup = new Intent(SignUpActivity.this, LogInActivity.class);
+                            startActivity(signup);
+
+                        } else {
+                            Log.e("Unsuccessful", task.getException().toString());
+                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
         finish();
     }
     public void onSignUpFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Unsuccessful", Toast.LENGTH_LONG).show();
 
         btn_signUpButton.setEnabled(true);
     }
@@ -150,10 +156,10 @@ public class SignUpActivity extends AppCompatActivity {
             input_password.setError(null);
         }
         if (password.equals(confirmpassword)) {
+            input_confirm_password.setError(null);
+        } else {
             input_confirm_password.setError("passwords do not match");
             valid = false;
-        } else {
-            input_confirm_password.setError(null);
         }
         return valid;
     }
