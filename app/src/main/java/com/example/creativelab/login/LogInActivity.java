@@ -31,8 +31,10 @@ public class LogInActivity extends AppCompatActivity {
     private CheckBox rememberMe;
     private SharedPreferences preferences;
     private static final String PREFS_NAME = "PrefsFile";
+    private TextView link_forgot_password ;
     FirebaseDatabase loginsignupdatabase;
     private FirebaseAuth authentication;
+    private FirebaseAuth.AuthStateListener authListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,16 @@ public class LogInActivity extends AppCompatActivity {
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.createAccountButton);
         rememberMe = findViewById(R.id.rememberMeCheckbox);
+        link_forgot_password = findViewById(R.id.link_forgot_password);
+
+        link_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+
+        }
+        });
     }
 
     public void btn_login_Click (View view){
