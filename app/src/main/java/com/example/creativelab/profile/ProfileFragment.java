@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
-import com.example.creativelab.login.ForgotPasswordActivity;
+import com.example.creativelab.learn.test.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,13 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView profileName;
-    private TextView profileEmail;
+    private TextView profileName, profileEmail, level, score, information;
     private Button logOutButton;
     private FirebaseAuth authentication;
-    private DatabaseReference databaseReference, scoreReference;
+    private DatabaseReference databaseReference;
     private FirebaseDatabase db;
     private String userId;
+    private int scoreConvert;
     Context context;
 
     @Nullable
@@ -60,8 +60,9 @@ public class ProfileFragment extends Fragment {
 
         profileName = rootView.findViewById(R.id.profileName);
         profileEmail = rootView.findViewById(R.id.profileEmail);
+        information = rootView.findViewById(R.id.information);
+        level = rootView.findViewById(R.id.level);
         logOutButton = rootView.findViewById(R.id.logOutButton);
-
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +77,26 @@ public class ProfileFragment extends Fragment {
             User user = new User();
             user.setName(ds.child(userId).getValue(User.class).getName());
             user.setEmail(ds.child(userId).getValue(User.class).getEmail());
+            user.setTotal(ds.child(userId).getValue(User.class).getTotal());
+
             profileName.setText(user.getName());
             profileEmail.setText(user.getEmail());
+
+            final int scoreConvert = Integer.parseInt(String.valueOf(user.getTotal()));
+            final String score = String.valueOf(user.getTotal());
+
+            if ((scoreConvert >= 0) && (1000 >= scoreConvert)) {
+                level.setText("Novice — " + score);
+            }
+            else if ((scoreConvert >= 1001) && (2000 >= scoreConvert)) {
+                level.setText("Adept — " + score);
+            }
+            else if ((scoreConvert >= 2001) && (3000 >= scoreConvert)) {
+                level.setText("Expert — " + score);
+            }
+            else {
+                level.setText("Founder of Adobe — " + score);
+            }
         }
     }
 

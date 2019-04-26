@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:padding="16dp"
+        android:padding="24dp"
         android:textSize="16sp"
         android:textAlignment="center"
         android:text="The following will test you on all topics covered in the lessons. There will be 10 questions, with each correct answer worth 10 points. Good luck!"
