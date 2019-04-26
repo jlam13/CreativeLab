@@ -68,12 +68,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateQuestion(int card) {
         if (questionNumber == card + 10) {
-            Intent i = new Intent(TestActivity.this, FinishTestActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt("finalScore", score);
-            i.putExtras(bundle);
+            Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
+            intent.putExtra("finalScore", score);
+            intent.putExtra("card", String.valueOf(card));
             TestActivity.this.finish();
-            startActivity(i);
+            startActivity(intent);
         } else {
             questions = Questions.getDummyQuestions().get(questionNumber);
             question.setText(questions.getQuestion());

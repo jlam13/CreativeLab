@@ -46,6 +46,7 @@ public class FinishTestActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             final int score = extras.getInt("finalScore");
+            final String card = (String) extras.get("card");
             finalScore.setText("You scored " + score + " out of 100");
 
             FirebaseApp.initializeApp(this);
@@ -54,8 +55,27 @@ public class FinishTestActivity extends AppCompatActivity {
             questionScore = database.getReference();
             final FirebaseUser user = auth.getCurrentUser();
             uid = user.getUid();
-            questionScore = database.getReference("User").child(uid).child("Test");
-            questionScore.child("T1").setValue(score);
+
+            questionScore = database.getReference("User");
+
+            questionScore.child(uid).child("test").child(card).setValue(score);
+
+/*            questionScore.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int points = dataSnapshot.child(uid).getValue(User.class).getPoints() + score;
+                    finalScore.setText(String.valueOf(points));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });*/
+
+
+
+//            questionScore.child("T1").setValue(score);
 
 
 /*            questionScore.child(String.format("%s_%s", Common.currentUser.getName(), Common.categoryId))
