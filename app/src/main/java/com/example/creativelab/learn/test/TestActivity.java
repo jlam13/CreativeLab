@@ -53,7 +53,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (choice2.getText() == answer) {
+        Button clickedButton = (Button)v;
+        if (clickedButton.getText() == answer) {
             score += 10;
             updateScore(score);
             updateQuestion((Integer) v.getTag());
