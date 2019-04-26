@@ -24,10 +24,10 @@ public class LessonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lesson);
         Log.d(TAG, "onCreate: Starting.");
 
+        // Receives corresponding YouTube tail from LearnFragment cards
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String learnInformation = (String) extras.get("learnInformation");
-
             final String youtube = (String) extras.get("youtube");
 
             Log.d(TAG, "onClick: Initialising YouTube Player.");
@@ -47,7 +47,6 @@ public class LessonActivity extends AppCompatActivity {
 
             information = findViewById(R.id.lesson);
             information.setText(learnInformation);
-
             back = findViewById(R.id.goBackButton);
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,8 +54,6 @@ public class LessonActivity extends AppCompatActivity {
                     onBackPressed();
                 }
             });
-
-
         }
     }
 }

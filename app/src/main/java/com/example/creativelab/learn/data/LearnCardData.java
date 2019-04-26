@@ -4,7 +4,6 @@ public class LearnCardData {
     private String learnCardId, learnCardName, youtubeId, learnInformation;
 
     public LearnCardData() {
-
     }
 
     public LearnCardData(String learnCardId, String learnCardName, String youtubeId, String learnInformation) {

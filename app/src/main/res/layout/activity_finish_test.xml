@@ -32,6 +32,20 @@
         android:id="@+id/finalScore"
         android:text="You got 100 out of 100"/>
 
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finalScore"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Total score"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+
     <Button
         android:id="@+id/homeButton"
         android:layout_width="wrap_content"

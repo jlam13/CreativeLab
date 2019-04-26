@@ -29,13 +29,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        link_back_to_login = (TextView)findViewById(R.id.link_back_to_login);
-        reset_email_input = (EditText) findViewById(R.id.emailText);
-        send_email_button = (Button) findViewById(R.id.SendEmailButton);
-
+        link_back_to_login = findViewById(R.id.link_back_to_login);
+        reset_email_input = findViewById(R.id.emailText);
+        send_email_button = findViewById(R.id.SendEmailButton);
 
         authentication = FirebaseAuth.getInstance();
-
         link_back_to_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +78,4 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

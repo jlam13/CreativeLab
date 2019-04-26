@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText input_password;
     private EditText input_confirm_password;
     private TextView link_login;
-    private Button btn_signUpButton;
+    private Button btn_signUp;
     private FirebaseAuth authentication;
     private FirebaseAuth.AuthStateListener authListener;
 
@@ -43,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         input_password = findViewById(R.id.input_password);
         input_confirm_password = findViewById(R.id.input_confirm_password);
         link_login = findViewById(R.id.link_login);
-        btn_signUpButton = (Button) findViewById(R.id.btn_signUpbutton);
+        btn_signUp = findViewById(R.id.btn_signUp);
         authentication = FirebaseAuth.getInstance();
 
         link_login.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -65,14 +66,14 @@ public class SignUpActivity extends AppCompatActivity {
         };
     }
 
-    public void btn_signUpbutton_Click(View v) {
+    public void btn_signUp_Click(View v) {
         Log.d(TAG, "SignUp");
 
         if (!validate()) {
             onSignUpFailed();
             return;
         }
-        btn_signUpButton.setEnabled(false);
+        btn_signUp.setEnabled(false);
 
         final ProgressDialog progressDialog = ProgressDialog.show(SignUpActivity.this, "Please wait...", "Processing...", true);
 
@@ -82,18 +83,17 @@ public class SignUpActivity extends AppCompatActivity {
         new Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
+                        // On complete call either onSignUpSuccess or onSignUpFailed
                         // depending on success
                         onSignUpSuccess();
                         //onSignUpFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
-
-
     }
+
     public void onSignUpSuccess() {
-        btn_signUpButton.setEnabled(true);
+        btn_signUp.setEnabled(true);
         setResult(RESULT_OK, null);
         (authentication.createUserWithEmailAndPassword(input_email.getText().toString(), input_password.getText().toString()))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -104,18 +104,16 @@ public class SignUpActivity extends AppCompatActivity {
                             final String name = input_name.getText().toString().trim();
                             final String email = input_email.getText().toString().trim();
                             final String password = input_password.getText().toString().trim();
-                            final String confirmpassword = input_confirm_password.getText().toString().trim();
+                            final String confirmPassword = input_confirm_password.getText().toString().trim();
+
                             User user = new User(name, email);
                             authentication.signInWithEmailAndPassword(email, password);
-                            //Toast.makeText(ActivityRegister.this, user_id, Toast.LENGTH_SHORT).show();
-
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("User");
                             DatabaseReference currentUserDB = mDatabase.child(authentication.getCurrentUser().getUid());
                             currentUserDB.child("name").setValue(name);
                             currentUserDB.child("email").setValue(email);
-                            Intent signup = new Intent(SignUpActivity.this, LogInActivity.class);
-                            startActivity(signup);
-
+                            Intent signUp = new Intent(SignUpActivity.this, LogInActivity.class);
+                            startActivity(signUp);
                         } else {
                             Log.e("Unsuccessful", task.getException().toString());
                             Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -127,8 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     public void onSignUpFailed() {
         Toast.makeText(getBaseContext(), "Unsuccessful", Toast.LENGTH_LONG).show();
-
-        btn_signUpButton.setEnabled(true);
+        btn_signUp.setEnabled(true);
     }
 
     public boolean validate() {
@@ -136,7 +133,7 @@ public class SignUpActivity extends AppCompatActivity {
         String name = input_name.getText().toString();
         String email = input_email.getText().toString();
         String password = input_password.getText().toString();
-        String confirmpassword = input_confirm_password.getText().toString();
+        String confirmPassword = input_confirm_password.getText().toString();
         if (name.isEmpty() || name.length() < 3) {
             input_name.setError("at least 3 characters");
             valid = false;
@@ -155,7 +152,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             input_password.setError(null);
         }
-        if (password.equals(confirmpassword)) {
+        if (password.equals(confirmPassword)) {
             input_confirm_password.setError(null);
         } else {
             input_confirm_password.setError("passwords do not match");

@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
-import com.example.creativelab.learn.test.Common;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -32,7 +31,6 @@ public class LogInActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private static final String PREFS_NAME = "PrefsFile";
     private TextView link_forgot_password ;
-    FirebaseDatabase loginsignupdatabase;
     private FirebaseAuth authentication;
     private FirebaseAuth.AuthStateListener authListener;
 
@@ -57,7 +55,7 @@ public class LogInActivity extends AppCompatActivity {
                 Intent intent = new Intent(LogInActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
 
-        }
+            }
         });
     }
 

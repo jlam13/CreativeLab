@@ -1,20 +1,15 @@
 package com.example.creativelab.learn.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
     public String name, email;
-    public List<Results> result;
-    public int points;
+    public int total;
 
     public User() {}
 
-    public User(String name, String email, List<Results> result, int points) {
+    public User(String name, String email, int total) {
         this.name = name;
         this.email = email;
-        this.result = result;
-        this.points = points;
+        this.total = total;
     }
 
     public String getName() {
@@ -33,19 +28,11 @@ public class User {
         this.email = email;
     }
 
-    public List<Results> getResult() {
-        return result;
+    public int getTotal() {
+        return total;
     }
 
-    public void setResult(List<Results> result) {
-        this.result = result;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

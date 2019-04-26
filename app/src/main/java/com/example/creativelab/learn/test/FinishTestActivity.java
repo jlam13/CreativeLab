@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
@@ -21,11 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class FinishTestActivity extends AppCompatActivity {
-    TextView finalScore;
+    TextView finalScore, total;
     Button home;
     FirebaseAuth auth;
-    FirebaseDatabase database;
-    DatabaseReference questionScore;
     String uid;
 
     @Override
@@ -34,8 +33,8 @@ public class FinishTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finish_test);
 
         finalScore = findViewById(R.id.finalScore);
+        total = findViewById(R.id.total);
         home = findViewById(R.id.homeButton);
-
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -58,9 +57,9 @@ public class FinishTestActivity extends AppCompatActivity {
             startActivity(intent);
             }
         });
-
     }
 
+    // Updates score in database by retrieving current score and adding the most recent score
     private void updateScore(final int score, String uid, String card) {
         DatabaseReference questionScore = FirebaseDatabase.getInstance().getReference();
         questionScore.child("User").child(uid).child("test").child(card).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,6 +71,7 @@ public class FinishTestActivity extends AppCompatActivity {
                     card = card + score;
                     dataSnapshot.getRef().setValue(card);
                 }
+                total.setText("Total score for this topic: " + card);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

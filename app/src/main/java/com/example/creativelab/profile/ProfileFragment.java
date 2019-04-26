@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import com.example.creativelab.DashboardActivity;
 import com.example.creativelab.R;
 import com.example.creativelab.login.ForgotPasswordActivity;
@@ -31,9 +30,7 @@ public class ProfileFragment extends Fragment {
     private TextView profileEmail;
     private Button logOutButton;
     private FirebaseAuth authentication;
-    private FirebaseAuth.AuthStateListener authenticationlistener;
-    private FirebaseUser firebaseUser;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, scoreReference;
     private FirebaseDatabase db;
     private String userId;
     Context context;

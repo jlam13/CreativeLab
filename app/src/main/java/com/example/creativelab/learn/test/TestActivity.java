@@ -51,6 +51,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Moving between questions
     @Override
     public void onClick(View v) {
         Button clickedButton = (Button)v;
@@ -66,6 +67,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Presents 10 questions
     private void updateQuestion(int card) {
         if (questionNumber == card + 10) {
             Intent intent = new Intent(TestActivity.this, FinishTestActivity.class);
@@ -88,6 +90,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         scoreView.setText("" + score);
     }
 
+    // When a user exits the test
     public void clickExit(View view) {
         closePrompt();
     }

@@ -38,8 +38,6 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         // Loads the selected fragment
         loadFragment(new LearnFragment());
 
-        // Connects the Learn database only once
-
         // Connects the Learn database
         FirebaseOptions optionsLearn = new FirebaseOptions.Builder()
                 .setApplicationId("1:62125859406:android:c7b3867e4f759f5e")
