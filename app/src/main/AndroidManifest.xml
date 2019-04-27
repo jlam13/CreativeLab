@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <activity android:name=".login.ForgotPasswordActivity" />
         <activity android:name=".learn.test.TestActivity" />
         <activity android:name=".login.SignUpActivity" />
         <activity
