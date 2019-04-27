@@ -53,7 +53,6 @@ public class HubFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         userList = new ArrayList<>();
         adapter = new HubAdapter(userList, this.getContext());
-        recyclerView.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
         final FirebaseUser user = auth.getCurrentUser();
@@ -69,8 +68,8 @@ public class HubFragment extends Fragment {
         Query order = FirebaseDatabase.getInstance().getReference("User").orderByChild("total").limitToFirst(10);
         order.addListenerForSingleValueEvent(valueEventListener);
 
-        Query self = FirebaseDatabase.getInstance().getReference("User").orderByChild(uid).equalTo(uid);
-        self.addListenerForSingleValueEvent(valueEventListener);
+        recyclerView.setAdapter(adapter);
+
         return rootView;
     }
 

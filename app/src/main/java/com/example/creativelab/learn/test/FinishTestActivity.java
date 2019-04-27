@@ -47,12 +47,12 @@ public class FinishTestActivity extends AppCompatActivity {
             final FirebaseUser user = auth.getCurrentUser();
             uid = user.getUid();
             updateScore(score, uid, card);
-            showScores(uid);
         }
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showScores(uid);
                 FinishTestActivity.this.finish();
                 Intent intent = new Intent(FinishTestActivity.this, DashboardActivity.class);
                 startActivity(intent);
@@ -83,6 +83,7 @@ public class FinishTestActivity extends AppCompatActivity {
         });
     }
 
+    // Sums the scores of a player's results
     private void showScores(String uid) {
         DatabaseReference questionScore = FirebaseDatabase.getInstance().getReference();
         questionScore.child("User").child(uid).child("test").addListenerForSingleValueEvent(new ValueEventListener() {
