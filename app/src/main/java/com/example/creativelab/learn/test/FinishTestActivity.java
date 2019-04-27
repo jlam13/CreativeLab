@@ -47,6 +47,7 @@ public class FinishTestActivity extends AppCompatActivity {
             final FirebaseUser user = auth.getCurrentUser();
             uid = user.getUid();
             updateScore(score, uid, card);
+            showScores(uid);
         }
 
         home.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +81,24 @@ public class FinishTestActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
 
+    private void showScores(String uid) {
+        DatabaseReference questionScore = FirebaseDatabase.getInstance().getReference();
+        questionScore.child("User").child(uid).child("test").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long total = 0;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    long value = ds.getValue(Long.class);
+                    total = total + value;
+                }
+                dataSnapshot.getRef().getParent().child("total").setValue(total);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }
